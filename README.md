@@ -226,4 +226,6 @@ The app includes:
 
 ## License
 
-No license has been selected yet. If the repo is made public and you want people to reuse the code, add an explicit license such as MIT. If you want the code visible but not freely reusable, keep all rights reserved until you choose a license.
+This repository is public for portfolio, demonstration, and product-discovery purposes.
+
+The code is currently **all rights reserved**. People can view the work, but they do not have permission to copy, resell, redistribute, or reuse it in another product without written permission.
