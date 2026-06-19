@@ -836,7 +836,8 @@ input[type="checkbox"] {
 
 .sound-layout,
 .caption-layout,
-.approval-layout {
+.approval-layout,
+.export-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 310px;
   gap: 16px;
@@ -881,7 +882,8 @@ input[type="checkbox"] {
 
 .sound-inspector,
 .caption-style,
-.brand-kit {
+.brand-kit,
+.delivery-inspector {
   display: grid;
   gap: 12px;
   align-content: start;
@@ -893,9 +895,58 @@ input[type="checkbox"] {
 
 .sound-inspector label,
 .caption-style label,
-.brand-kit label {
+.brand-kit label,
+.delivery-inspector label {
   display: grid;
   gap: 7px;
+}
+
+.delivery-inspector span,
+.render-toggles {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.render-toggles {
+  display: grid;
+  gap: 8px;
+}
+
+.render-toggles label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidecar-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.render-summary {
+  display: grid;
+  gap: 7px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(17, 20, 22, 0.4);
+}
+
+.render-summary div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.render-summary strong {
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 12px;
 }
 
 #waveCanvas {
@@ -982,6 +1033,13 @@ input[type="checkbox"] {
   color: var(--cyan-2);
   font-family: var(--font-mono);
   font-size: 12px;
+}
+
+.caption-time-input {
+  color: var(--cyan-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: center;
 }
 
 .caption-item input {
@@ -1177,6 +1235,7 @@ input[type="checkbox"] {
   .sound-layout,
   .caption-layout,
   .approval-layout,
+  .export-layout,
   .signal-strip {
     grid-template-columns: 1fr;
   }

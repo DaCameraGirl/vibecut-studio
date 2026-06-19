@@ -59,7 +59,11 @@ Current app surfaces:
 - Brand review queue with approval and rewrite actions
 - Forbidden-claim check against the brief and captions
 - Export queue for TikTok, Reels, Shorts, LinkedIn, podcast audio, and team review
+- Delivery inspector with render preset, FPS, duration, audio, caption, and brand slate controls
 - Real browser-local WebM render from canvas, captions, uploaded media preview, and generated beat audio
+- Timed caption burn-in during render
+- SRT and VTT sidecar caption export
+- Production manifest export with delivery settings, assets, captions, approvals, and render receipt
 - Project JSON export for saving or handing work to another system
 - Browser-local project save, load, import, and reset controls
 - Autosave status, visual meters, keyboard focus states, and responsive layout
@@ -196,7 +200,7 @@ The app uses:
 - No external API keys
 - No external CDN assets
 
-This makes the project simple to publish, fork, demo, and inspect.
+This makes the project simple to publish, inspect, and run without setup friction.
 
 ## Current Limitations
 
@@ -204,19 +208,19 @@ The app is currently a front-end production tool with real local preview, real U
 
 It does not yet perform server-side rendering, codec-level transcoding beyond browser-supported WebM recording, stem separation, AI model inference, cloud storage, user accounts, or collaborative review links.
 
-Those would be the natural next backend additions after the public demo proves the product direction.
+Those are the natural backend additions for a hosted commercial version.
 
 ## Suggested Next Issues
 
 - Add persistent project save/load from local storage
 - Add real media timeline trimming with in/out points
 - Add waveform generation from uploaded audio
-- Add caption import/export for SRT and VTT
+- Add caption import for SRT and VTT
 - Add WebCodecs or FFmpeg.wasm render path
 - Add shareable review links
 - Add brand kit import/export
 - Add GitHub Pages deployment badge after publishing
-- Add screenshots or demo GIF to this README
+- Add product screenshots or workflow GIFs to this README
 
 ## Accessibility And UX Notes
 
@@ -230,6 +234,6 @@ The app includes:
 
 ## License
 
-This repository is public for portfolio, demonstration, and product-discovery purposes.
+This repository is public for portfolio, product-discovery, and evaluation purposes.
 
 The code is currently **all rights reserved**. People can view the work, but they do not have permission to copy, resell, redistribute, or reuse it in another product without written permission.

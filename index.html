@@ -48,7 +48,7 @@
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 20V8"/><path d="M8 12l4-4 4 4"/><path d="M5 4h14"/></svg>
             </button>
             <input id="projectImportInput" class="hidden-input" type="file" accept="application/json,.json">
-            <button class="icon-button" id="resetProjectButton" type="button" aria-label="Reset demo" title="Reset demo">
+            <button class="icon-button" id="resetProjectButton" type="button" aria-label="Reset project" title="Reset project">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7v5h5"/><path d="M20 17a8 8 0 0 1-13.6 3.7"/><path d="M4.6 12A8 8 0 0 1 18 5.3"/></svg>
             </button>
             <button class="icon-button" id="copyBriefButton" type="button" aria-label="Copy project brief" title="Copy project brief">
@@ -318,17 +318,55 @@
             </section>
 
             <section class="deck-panel" id="exportPanel" role="tabpanel">
-              <div class="timeline-head">
+              <div class="export-layout">
                 <div>
-                  <p class="eyebrow">Delivery</p>
-                  <h2>Render queue</h2>
+                  <div class="timeline-head">
+                    <div>
+                      <p class="eyebrow">Delivery</p>
+                      <h2>Render queue</h2>
+                    </div>
+                    <div class="timeline-tools">
+                      <button class="tool-button" id="renderQueueButton" type="button">Render WebM</button>
+                      <button class="tool-button" id="downloadProjectButton" type="button">Project JSON</button>
+                      <button class="tool-button" id="exportManifestButton" type="button">Manifest</button>
+                    </div>
+                  </div>
+                  <div class="export-grid" id="exportGrid"></div>
                 </div>
-                <div class="timeline-tools">
-                  <button class="tool-button" id="renderQueueButton" type="button">Render WebM</button>
-                  <button class="tool-button" id="downloadProjectButton" type="button">Export JSON</button>
-                </div>
+                <aside class="delivery-inspector">
+                  <h3>Delivery inspector</h3>
+                  <label>
+                    <span>Render preset</span>
+                    <select id="renderQualitySelect">
+                      <option value="studio">Studio 1080</option>
+                      <option value="balanced" selected>Balanced 720</option>
+                      <option value="fast">Fast proof</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Frame rate</span>
+                    <select id="renderFpsSelect">
+                      <option>24</option>
+                      <option selected>30</option>
+                      <option>60</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Duration seconds</span>
+                    <input id="renderDurationInput" type="number" min="6" max="60" value="30">
+                  </label>
+                  <div class="render-toggles">
+                    <label><input id="includeBeatToggle" type="checkbox" checked> Beat audio</label>
+                    <label><input id="burnCaptionsToggle" type="checkbox" checked> Burn captions</label>
+                    <label><input id="brandSlateToggle" type="checkbox" checked> Brand slate</label>
+                  </div>
+                  <div class="sidecar-actions">
+                    <button class="tool-button" id="exportSrtButton" type="button">SRT</button>
+                    <button class="tool-button" id="exportVttButton" type="button">VTT</button>
+                  </div>
+                  <div class="render-summary" id="renderSummary"></div>
+                </aside>
               </div>
-              <div class="export-grid" id="exportGrid"></div>
             </section>
 
             <section class="deck-panel" id="approvalPanel" role="tabpanel">
