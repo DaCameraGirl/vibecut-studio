@@ -192,6 +192,12 @@ h3 {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.hidden-input {
+  display: none;
 }
 
 .save-state,
@@ -481,6 +487,10 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+.preview-title::before {
+  content: attr(data-title);
+}
+
 .scanline {
   position: absolute;
   inset: 0;
@@ -645,6 +655,45 @@ input[type="checkbox"] {
   align-items: center;
   gap: 7px;
   min-height: 32px;
+}
+
+.template-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.template-button {
+  min-height: 54px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--paper);
+  background: rgba(17, 20, 22, 0.38);
+  text-align: left;
+}
+
+.template-button:hover,
+.template-button.is-active {
+  border-color: rgba(248, 201, 69, 0.7);
+  background: rgba(248, 201, 69, 0.1);
+}
+
+.template-button strong,
+.template-button span {
+  display: block;
+}
+
+.template-button strong {
+  font-size: 13px;
+}
+
+.template-button span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
 }
 
 .action-stack {
@@ -1094,7 +1143,8 @@ input[type="checkbox"] {
 
   .action-stack,
   .control-grid,
-  .platform-set {
+  .platform-set,
+  .template-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
@@ -1156,6 +1206,7 @@ input[type="checkbox"] {
   .action-stack,
   .control-grid,
   .platform-set,
+  .template-strip,
   .hook-row,
   .export-grid,
   .mixer {

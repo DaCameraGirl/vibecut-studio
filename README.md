@@ -59,8 +59,9 @@ Current app surfaces:
 - Brand review queue with approval and rewrite actions
 - Forbidden-claim check against the brief and captions
 - Export queue for TikTok, Reels, Shorts, LinkedIn, podcast audio, and team review
-- Simulated render progress for export workflows
+- Real browser-local WebM render from canvas, captions, uploaded media preview, and generated beat audio
 - Project JSON export for saving or handing work to another system
+- Browser-local project save, load, import, and reset controls
 - Autosave status, visual meters, keyboard focus states, and responsive layout
 
 ## How To Run Locally
@@ -185,8 +186,11 @@ The app uses:
 - Plain CSS
 - Plain JavaScript
 - Canvas for meters and waveform visuals
+- Canvas capture streams and MediaRecorder for local WebM rendering
 - Web Audio for beat playback
+- Web Audio render scheduling for generated beat audio in exported videos
 - Browser object URLs for local media preview
+- Local storage for browser-side project persistence
 - No package manager
 - No build step
 - No external API keys
@@ -196,9 +200,9 @@ This makes the project simple to publish, fork, demo, and inspect.
 
 ## Current Limitations
 
-The app is currently a front-end production simulation with real local preview, real UI state, real Web Audio beat playback, and real project JSON export.
+The app is currently a front-end production tool with real local preview, real UI state, browser-local project storage, real Web Audio beat playback, real project JSON export, and real local WebM rendering through `MediaRecorder`.
 
-It does not yet perform server-side rendering, real transcoding, stem separation, AI model inference, cloud storage, user accounts, or collaborative review links.
+It does not yet perform server-side rendering, codec-level transcoding beyond browser-supported WebM recording, stem separation, AI model inference, cloud storage, user accounts, or collaborative review links.
 
 Those would be the natural next backend additions after the public demo proves the product direction.
 

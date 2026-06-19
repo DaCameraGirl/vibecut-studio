@@ -1,10 +1,15 @@
 const state = {
+  projectTitle: "Campaign cutroom",
+  previewTitle: "Skincare drop",
+  template: "launch",
   savedAt: 0,
   ratio: "9:16",
   activeHook: 0,
   isPreviewPlaying: false,
   bpm: 126,
   key: "F minor",
+  platforms: ["TikTok", "Reels", "Shorts", "LinkedIn", "Podcast"],
+  lastRender: null,
   assets: [
     { name: "product_spin.mov", type: "video", size: "42 MB", color: "#0fb9b1" },
     { name: "founder_voice.wav", type: "audio", size: "18 MB", color: "#ff4f8b" },
@@ -74,6 +79,127 @@ const state = {
   ]
 };
 
+const STORAGE_KEY = "vibecut-studio-project";
+const demoState = clone(state);
+const projectTemplates = [
+  {
+    id: "launch",
+    label: "Product launch",
+    meta: "DTC ad pack",
+    projectTitle: "Launch cutroom",
+    previewTitle: "Launch edit",
+    brief: "Make this into a premium skincare launch video with clean captions, a soft but confident voiceover, close product cuts, and a beat that feels expensive without feeling sleepy.",
+    vibe: "Luxury pulse",
+    bpm: 126,
+    key: "F minor",
+    length: "30 sec",
+    platforms: ["TikTok", "Reels", "Shorts", "LinkedIn", "Podcast"],
+    assets: [
+      { name: "product_spin.mov", type: "video", size: "42 MB", color: "#0fb9b1" },
+      { name: "founder_voice.wav", type: "audio", size: "18 MB", color: "#ff4f8b" },
+      { name: "texture_macro.jpg", type: "image", size: "6 MB", color: "#f8c945" }
+    ],
+    hooks: [
+      "Skincare finally gets the edit it deserves.",
+      "This is the launch cut people rewatch twice.",
+      "A luxury pulse launch built for the first three seconds."
+    ],
+    captions: [
+      { time: "00:00", text: "Skincare finally gets the edit it deserves." },
+      { time: "00:04", text: "Close product cuts, clean proof, and a confident beat." },
+      { time: "00:13", text: "Every claim stays safe enough for review." },
+      { time: "00:24", text: "Launch bundle is ready for every platform." }
+    ]
+  },
+  {
+    id: "podcast",
+    label: "Podcast clip",
+    meta: "voice-led shorts",
+    projectTitle: "Podcast cliproom",
+    previewTitle: "Clip pull",
+    brief: "Turn a founder podcast answer into a sharp vertical clip with cleaned voice, punchy captions, subtle score, and a LinkedIn-safe version for business audiences.",
+    vibe: "Podcast clip",
+    bpm: 94,
+    key: "D dorian",
+    length: "45 sec",
+    platforms: ["TikTok", "Reels", "Shorts", "LinkedIn", "Podcast"],
+    assets: [
+      { name: "founder_interview.wav", type: "audio", size: "64 MB", color: "#ff4f8b" },
+      { name: "camera_a.mp4", type: "video", size: "210 MB", color: "#0fb9b1" },
+      { name: "waveform_overlay.png", type: "image", size: "2 MB", color: "#f8c945" }
+    ],
+    hooks: [
+      "The quote starts calm, then it lands.",
+      "This founder answer needed one clean cut.",
+      "Forty seconds, one idea, no filler."
+    ],
+    captions: [
+      { time: "00:00", text: "The quote starts calm, then it lands." },
+      { time: "00:06", text: "Clean voice, larger captions, no dead air." },
+      { time: "00:18", text: "The key line gets room to breathe." },
+      { time: "00:38", text: "Save the long episode for the link." }
+    ]
+  },
+  {
+    id: "course",
+    label: "Course teaser",
+    meta: "training + LMS",
+    projectTitle: "Course trailer bay",
+    previewTitle: "Lesson teaser",
+    brief: "Cut a course teaser from raw lesson footage with clear chapter captions, friendly music, polished voice, and exports for YouTube Shorts, LinkedIn, and an LMS preview.",
+    vibe: "Clean tutorial",
+    bpm: 112,
+    key: "G major",
+    length: "60 sec",
+    platforms: ["Shorts", "LinkedIn", "LMS"],
+    assets: [
+      { name: "lesson_screen.mp4", type: "video", size: "180 MB", color: "#0fb9b1" },
+      { name: "instructor_vo.wav", type: "audio", size: "35 MB", color: "#ff4f8b" },
+      { name: "chapter_cards.png", type: "image", size: "4 MB", color: "#f8c945" }
+    ],
+    hooks: [
+      "Learn the workflow before the next deadline.",
+      "One lesson, cut into a clean teaser.",
+      "This course preview shows the payoff first."
+    ],
+    captions: [
+      { time: "00:00", text: "Learn the workflow before the next deadline." },
+      { time: "00:09", text: "Each chapter gets a clear visual beat." },
+      { time: "00:28", text: "Voice is cleaned for headphones and laptop speakers." },
+      { time: "00:52", text: "Export the LMS preview with captions burned in." }
+    ]
+  },
+  {
+    id: "listing",
+    label: "Listing reel",
+    meta: "real estate social",
+    projectTitle: "Listing reel room",
+    previewTitle: "Open house",
+    brief: "Make a real estate listing reel with fast room transitions, warm but modern music, captioned property details, and polished exports for Reels, TikTok, and LinkedIn.",
+    vibe: "Street launch",
+    bpm: 118,
+    key: "A minor",
+    length: "30 sec",
+    platforms: ["TikTok", "Reels", "Shorts", "LinkedIn"],
+    assets: [
+      { name: "kitchen_pan.mov", type: "video", size: "88 MB", color: "#0fb9b1" },
+      { name: "agent_intro.wav", type: "audio", size: "14 MB", color: "#ff4f8b" },
+      { name: "floorplan.jpg", type: "image", size: "3 MB", color: "#f8c945" }
+    ],
+    hooks: [
+      "The kitchen is the scroll-stopper.",
+      "Tour the best room first.",
+      "Thirty seconds, three reasons to book."
+    ],
+    captions: [
+      { time: "00:00", text: "The kitchen is the scroll-stopper." },
+      { time: "00:05", text: "Natural light, open flow, clean finish." },
+      { time: "00:15", text: "Details stay readable on every platform." },
+      { time: "00:26", text: "Book the showing before the weekend." }
+    ]
+  }
+];
+
 const els = {};
 let audioContext;
 let beatTimer;
@@ -81,6 +207,7 @@ let beatStep = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   cacheElements();
+  loadStoredProject(false);
   bindEvents();
   renderAll();
   startAutosaveClock();
@@ -102,6 +229,7 @@ function cacheElements() {
     "exportGrid",
     "approvalList",
     "briefInput",
+    "projectTitle",
     "vibeSelect",
     "bpmInput",
     "keySelect",
@@ -127,6 +255,11 @@ function cacheElements() {
     "renderQueueButton",
     "renderPackTopButton",
     "downloadProjectButton",
+    "saveProjectButton",
+    "loadProjectButton",
+    "importProjectButton",
+    "projectImportInput",
+    "resetProjectButton",
     "copyBriefButton",
     "captionButton",
     "masterButton",
@@ -145,7 +278,8 @@ function cacheElements() {
     "captionCaseSelect",
     "captionPositionSelect",
     "captionEmphasisSlider",
-    "forbiddenInput"
+    "forbiddenInput",
+    "templateStrip"
   ];
 
   ids.forEach((id) => {
@@ -216,6 +350,11 @@ function bindEvents() {
   els.renderQueueButton.addEventListener("click", renderQueue);
   els.renderPackTopButton.addEventListener("click", renderQueue);
   els.downloadProjectButton.addEventListener("click", downloadProject);
+  els.saveProjectButton.addEventListener("click", () => saveProject(true));
+  els.loadProjectButton.addEventListener("click", () => loadStoredProject(true));
+  els.importProjectButton.addEventListener("click", () => els.projectImportInput.click());
+  els.projectImportInput.addEventListener("change", importProject);
+  els.resetProjectButton.addEventListener("click", resetDemoProject);
   els.copyBriefButton.addEventListener("click", copyBrief);
   els.captionButton.addEventListener("click", autoCaption);
   els.masterButton.addEventListener("click", masterMix);
@@ -233,6 +372,15 @@ function bindEvents() {
     input.addEventListener("input", () => {
       state.bpm = Number(els.bpmInput.value);
       state.key = els.keySelect.value;
+      state.template = projectTemplates.find((template) => template.vibe === els.vibeSelect.value)?.id || state.template;
+      renderPreviewMeta();
+      touchSave();
+    });
+  });
+
+  document.querySelectorAll(".platform-set input").forEach((input) => {
+    input.addEventListener("change", () => {
+      syncStateFromControls();
       renderPreviewMeta();
       touchSave();
     });
@@ -259,6 +407,9 @@ function bindEvents() {
 }
 
 function renderAll() {
+  applyStateToControls();
+  renderProjectChrome();
+  renderTemplates();
   renderAssets();
   renderHooks();
   renderRuler();
@@ -272,6 +423,262 @@ function renderAll() {
   updatePreviewRatio();
   applyCaptionStyle();
   drawWaveform();
+}
+
+function renderProjectChrome() {
+  els.projectTitle.textContent = state.projectTitle;
+  els.previewTitleCard.dataset.title = state.previewTitle;
+  els.previewTitleCard.setAttribute("aria-label", state.previewTitle);
+}
+
+function renderTemplates() {
+  els.templateStrip.innerHTML = "";
+  projectTemplates.forEach((template) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `template-button${state.template === template.id ? " is-active" : ""}`;
+    button.innerHTML = `<strong>${escapeHtml(template.label)}</strong><span>${escapeHtml(template.meta)}</span>`;
+    button.addEventListener("click", () => applyTemplate(template.id));
+    els.templateStrip.appendChild(button);
+  });
+}
+
+function applyStateToControls() {
+  if (!els.briefInput) return;
+  els.briefInput.value = state.brief || els.briefInput.value;
+  els.vibeSelect.value = state.vibe || els.vibeSelect.value;
+  els.bpmInput.value = String(state.bpm || 126);
+  els.keySelect.value = state.key || "F minor";
+  els.lengthSelect.value = state.length || "30 sec";
+  document.querySelectorAll(".platform-set input").forEach((input) => {
+    input.checked = state.platforms.includes(input.value);
+  });
+}
+
+function syncStateFromControls() {
+  state.brief = els.briefInput.value;
+  state.vibe = els.vibeSelect.value;
+  state.bpm = Number(els.bpmInput.value) || state.bpm;
+  state.key = els.keySelect.value;
+  state.length = els.lengthSelect.value;
+  state.platforms = Array.from(document.querySelectorAll(".platform-set input:checked")).map((input) => input.value);
+}
+
+function applyTemplate(templateId) {
+  const template = projectTemplates.find((item) => item.id === templateId);
+  if (!template) return;
+  state.template = template.id;
+  state.projectTitle = template.projectTitle;
+  state.previewTitle = template.previewTitle;
+  state.brief = template.brief;
+  state.vibe = template.vibe;
+  state.bpm = template.bpm;
+  state.key = template.key;
+  state.length = template.length;
+  state.platforms = [...template.platforms];
+  state.assets = clone(template.assets);
+  state.hooks = clone(template.hooks);
+  state.captions = clone(template.captions);
+  state.activeHook = 0;
+  state.clips = buildTemplateClips(template);
+  state.exports = buildTemplateExports(template.platforms);
+  state.approvals = [
+    { area: "Brand", detail: `${template.label} template uses approved color, caption, and logo structure.`, status: "clear" },
+    { area: "Claims", detail: "Template language is review-safe and avoids hard promises.", status: "clear" },
+    { area: "Audio", detail: "Voice cleanup, score, and master settings are staged.", status: "clear" },
+    { area: "Captions", detail: "Caption safe areas are staged for selected platforms.", status: "clear" }
+  ];
+  els.captionOverlay.textContent = state.hooks[0];
+  renderAll();
+  updateRiskScore();
+  showToast(`${template.label} workspace loaded`);
+  touchSave();
+}
+
+function buildTemplateClips(template) {
+  const productWord = template.previewTitle.split(" ")[0] || "Hero";
+  return {
+    video: [
+      { name: "Cold open", duration: 3, color: "#0fb9b1" },
+      { name: `${productWord} proof`, duration: 5, color: "#5ce0d7" },
+      { name: "Detail pass", duration: 6, color: "#f8c945" },
+      { name: "Motion bridge", duration: 5, color: "#ff4f8b" },
+      { name: "CTA card", duration: template.length === "60 sec" ? 14 : 7, color: "#78df86" }
+    ],
+    voice: [
+      { name: "Hook VO", duration: 4, color: "#ff4f8b" },
+      { name: "Core proof", duration: 12, color: "#ff8bb0" },
+      { name: "Trust line", duration: 7, color: "#ff4f8b" },
+      { name: "CTA VO", duration: 4, color: "#ff8bb0" }
+    ],
+    music: [
+      { name: `${template.vibe} motif`, duration: 8, color: "#f8c945" },
+      { name: `${template.key} groove`, duration: 12, color: "#78df86" },
+      { name: "Button ending", duration: 7, color: "#f8c945" }
+    ],
+    captions: [
+      { name: "Hook caption", duration: 4, color: "#f7f7f2" },
+      { name: "Proof caption", duration: 12, color: "#f7f7f2" },
+      { name: "CTA caption", duration: 5, color: "#f7f7f2" }
+    ]
+  };
+}
+
+function buildTemplateExports(platforms) {
+  const map = {
+    TikTok: ["TikTok vertical", "1080x1920 H.264"],
+    Reels: ["Instagram Reels", "1080x1920 H.264"],
+    Shorts: ["YouTube Shorts", "1080x1920 H.264"],
+    LinkedIn: ["LinkedIn square", "1080x1080 H.264"],
+    Podcast: ["Podcast audio", "WAV + MP3"],
+    LMS: ["LMS preview", "MP4 + VTT"]
+  };
+  return platforms.map((platform, index) => {
+    const [name, format] = map[platform] || [platform, "H.264"];
+    return {
+      name,
+      format,
+      progress: index < 2 ? 100 : 32 + index * 8,
+      status: index < 2 ? "ready" : "queued"
+    };
+  });
+}
+
+function saveProject(announce) {
+  syncStateFromControls();
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(createPersistableState()));
+    if (announce) showToast("Project saved in this browser");
+    return true;
+  } catch (error) {
+    if (announce) showToast("Browser storage is unavailable");
+    return false;
+  }
+}
+
+function loadStoredProject(announce) {
+  let raw;
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+  } catch (error) {
+    if (announce) showToast("Browser storage is unavailable");
+    return false;
+  }
+  if (!raw) {
+    if (announce) showToast("No saved project found in this browser");
+    return false;
+  }
+  try {
+    loadStateSnapshot(JSON.parse(raw));
+    if (announce) {
+      renderAll();
+      showToast("Saved project loaded");
+    }
+    return true;
+  } catch (error) {
+    if (announce) showToast("Saved project could not be loaded");
+    return false;
+  }
+}
+
+function importProject(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    try {
+      const payload = JSON.parse(String(reader.result));
+      loadStateSnapshot(payload);
+      renderAll();
+      saveProject(false);
+      showToast(`${file.name} imported`);
+    } catch (error) {
+      showToast("Project JSON is not valid");
+    } finally {
+      event.target.value = "";
+    }
+  });
+  reader.readAsText(file);
+}
+
+function resetDemoProject() {
+  loadStateSnapshot(demoState);
+  applyTemplate("launch");
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    // Storage can be unavailable under strict browser settings.
+  }
+  showToast("Demo reset");
+}
+
+function loadStateSnapshot(snapshot) {
+  const safe = normalizeSnapshot(snapshot);
+  Object.keys(state).forEach((key) => {
+    if (Object.prototype.hasOwnProperty.call(safe, key)) {
+      state[key] = clone(safe[key]);
+    }
+  });
+  state.assets = state.assets.map((asset) => {
+    const copy = { ...asset };
+    delete copy.url;
+    return copy;
+  });
+  state.activeHook = Math.min(state.activeHook || 0, Math.max(0, state.hooks.length - 1));
+}
+
+function normalizeSnapshot(snapshot) {
+  const base = clone(demoState);
+  const source = snapshot && typeof snapshot === "object" ? snapshot : {};
+  const allowed = [
+    "projectTitle",
+    "previewTitle",
+    "template",
+    "savedAt",
+    "ratio",
+    "activeHook",
+    "bpm",
+    "key",
+    "platforms",
+    "assets",
+    "hooks",
+    "clips",
+    "captions",
+    "channels",
+    "mixer",
+    "exports",
+    "approvals",
+    "brief",
+    "vibe",
+    "length",
+    "lastRender"
+  ];
+  allowed.forEach((key) => {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      base[key] = clone(source[key]);
+    }
+  });
+  base.platforms = Array.isArray(base.platforms) ? base.platforms : demoState.platforms;
+  base.assets = Array.isArray(base.assets) ? base.assets : demoState.assets;
+  base.hooks = Array.isArray(base.hooks) ? base.hooks : demoState.hooks;
+  base.captions = Array.isArray(base.captions) ? base.captions : demoState.captions;
+  base.channels = Array.isArray(base.channels) ? base.channels : demoState.channels;
+  base.mixer = Array.isArray(base.mixer) ? base.mixer : demoState.mixer;
+  base.exports = Array.isArray(base.exports) ? base.exports : demoState.exports;
+  base.approvals = Array.isArray(base.approvals) ? base.approvals : demoState.approvals;
+  return base;
+}
+
+function createPersistableState() {
+  const snapshot = clone(state);
+  snapshot.assets = snapshot.assets.map((asset) => {
+    const copy = { ...asset };
+    delete copy.url;
+    delete copy.mime;
+    return copy;
+  });
+  snapshot.exportedAt = new Date().toISOString();
+  return snapshot;
 }
 
 function renderAssets() {
@@ -585,6 +992,9 @@ function generateFullCut() {
   const second = nouns[1] || "proof";
   const third = nouns[2] || "launch";
 
+  syncStateFromControls();
+  state.projectTitle = `${capitalize(product)} cutroom`;
+  state.previewTitle = `${capitalize(product)} edit`;
   state.hooks = [
     `${capitalize(product)} finally gets the edit it deserves.`,
     `This is the ${second} cut people rewatch twice.`,
@@ -616,8 +1026,8 @@ function generateFullCut() {
     { time: "00:24", text: "Export the full launch pack now." }
   ];
 
-  els.previewTitleCard.textContent = product;
   els.captionOverlay.textContent = state.hooks[0];
+  state.exports = buildTemplateExports(state.platforms);
   state.exports.forEach((item, index) => {
     item.progress = index < 2 ? 100 : 18 + index * 8;
     item.status = index < 2 ? "ready" : "queued";
@@ -695,57 +1105,300 @@ function runBrandCheck() {
   touchSave();
 }
 
-function renderQueue() {
-  let delay = 0;
-  state.exports.forEach((item, index) => {
+async function renderQueue() {
+  if (!("MediaRecorder" in window) || !HTMLCanvasElement.prototype.captureStream) {
+    showToast("This browser cannot render WebM from canvas");
+    return;
+  }
+
+  syncStateFromControls();
+  activatePanel("exportPanel");
+  state.exports = state.exports.length ? state.exports : buildTemplateExports(state.platforms);
+  state.exports.forEach((item) => {
     item.status = "rendering";
-    item.progress = Math.max(item.progress, 12);
-    setTimeout(() => animateExport(index), delay);
-    delay += 220;
+    item.progress = 0;
   });
   renderExports();
-  activatePanel("exportPanel");
-  showToast("Render pack started");
-  touchSave();
+  showToast("Rendering a real local WebM file");
+
+  const progressTimer = setInterval(() => {
+    state.exports.forEach((item) => {
+      item.progress = Math.min(94, item.progress + 3);
+    });
+    renderExports();
+  }, 900);
+
+  try {
+    const blob = await renderLocalWebm();
+    clearInterval(progressTimer);
+    const fileName = `${slugify(state.projectTitle || "vibecut")}-${Date.now()}.webm`;
+    downloadBlob(blob, fileName);
+    state.lastRender = {
+      name: fileName,
+      size: formatBytes(blob.size),
+      createdAt: new Date().toISOString()
+    };
+    state.exports.forEach((item) => {
+      item.status = "ready";
+      item.progress = 100;
+    });
+    renderExports();
+    showToast(`Rendered ${fileName}`);
+    touchSave();
+  } catch (error) {
+    clearInterval(progressTimer);
+    state.exports.forEach((item) => {
+      item.status = "blocked";
+      item.progress = 0;
+    });
+    renderExports();
+    showToast("Render failed in this browser");
+  }
 }
 
-function animateExport(index) {
-  const item = state.exports[index];
-  if (!item) return;
-  const interval = setInterval(() => {
-    item.progress = Math.min(100, item.progress + 8 + Math.floor(Math.random() * 12));
-    if (item.progress >= 100) {
-      item.status = "ready";
-      clearInterval(interval);
+async function renderLocalWebm() {
+  const ratio = state.ratio;
+  const size = ratio === "16:9"
+    ? { width: 1280, height: 720 }
+    : ratio === "1:1"
+      ? { width: 1080, height: 1080 }
+      : { width: 720, height: 1280 };
+  const duration = Math.max(6, Math.min(parseInt(state.length || "30", 10) || 30, 60));
+  const canvas = document.createElement("canvas");
+  canvas.width = size.width;
+  canvas.height = size.height;
+  const ctx = canvas.getContext("2d");
+  const stream = canvas.captureStream(30);
+  const renderAudio = new (window.AudioContext || window.webkitAudioContext)();
+  const destination = renderAudio.createMediaStreamDestination();
+  stream.addTrack(destination.stream.getAudioTracks()[0]);
+
+  const source = await loadRenderableSource();
+
+  const chunks = [];
+  const mimeType = MediaRecorder.isTypeSupported("video/webm;codecs=vp9,opus")
+    ? "video/webm;codecs=vp9,opus"
+    : "video/webm";
+  const recorder = new MediaRecorder(stream, { mimeType });
+  recorder.addEventListener("dataavailable", (event) => {
+    if (event.data.size) chunks.push(event.data);
+  });
+
+  const stopped = new Promise((resolve) => {
+    recorder.addEventListener("stop", resolve, { once: true });
+  });
+
+  recorder.start(250);
+  await renderAudio.resume();
+  scheduleRenderBeat(renderAudio, destination, duration);
+  const start = performance.now();
+  await drawRenderLoop(ctx, canvas, source, start, duration);
+  recorder.stop();
+  await stopped;
+  await stopRenderableSource(source);
+  await renderAudio.close();
+  return new Blob(chunks, { type: mimeType });
+}
+
+async function loadRenderableSource() {
+  const asset = state.assets.find((item) => item.url && (item.type === "video" || item.type === "image"));
+  if (!asset) return { type: "generated" };
+
+  if (asset.type === "video") {
+    const video = document.createElement("video");
+    video.src = asset.url;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    await waitForMedia(video, "loadeddata");
+    video.currentTime = 0;
+    await video.play();
+    return { type: "video", element: video, name: asset.name };
+  }
+
+  const image = new Image();
+  image.src = asset.url;
+  await waitForMedia(image, "load");
+  return { type: "image", element: image, name: asset.name };
+}
+
+function waitForMedia(element, eventName) {
+  return new Promise((resolve, reject) => {
+    if (eventName === "loadeddata" && element.readyState >= 2) {
+      resolve();
+      return;
     }
-    renderExports();
-  }, 180);
+    if (eventName === "load" && element.complete) {
+      resolve();
+      return;
+    }
+    element.addEventListener(eventName, resolve, { once: true });
+    element.addEventListener("error", reject, { once: true });
+  });
+}
+
+async function stopRenderableSource(source) {
+  if (source?.type === "video") {
+    source.element.pause();
+    source.element.removeAttribute("src");
+    source.element.load();
+  }
+}
+
+function scheduleRenderBeat(context, destination, duration) {
+  const master = context.createGain();
+  master.gain.value = 0.18;
+  master.connect(destination);
+  const bpm = Number(state.bpm) || 126;
+  const stepDuration = 60 / bpm / 4;
+  const steps = Math.ceil(duration / stepDuration);
+
+  for (let step = 0; step < steps; step += 1) {
+    const time = context.currentTime + step * stepDuration;
+    const index = step % 16;
+    state.channels.forEach((channel) => {
+      if (!channel.steps[index]) return;
+      if (channel.name === "Kick") scheduleTone(context, master, 68, time, 0.13, "sine", 0.9);
+      if (channel.name === "Snare") scheduleNoise(context, master, time, 0.08, 0.4);
+      if (channel.name === "Hat") scheduleNoise(context, master, time, 0.035, 0.18);
+      if (channel.name === "Bass") scheduleTone(context, master, 112, time, 0.16, "sawtooth", 0.35);
+      if (channel.name === "Vox") scheduleTone(context, master, 430, time, 0.08, "triangle", 0.18);
+    });
+  }
+}
+
+function scheduleTone(context, destination, frequency, time, duration, type, gainValue) {
+  const oscillator = context.createOscillator();
+  const gain = context.createGain();
+  oscillator.type = type;
+  oscillator.frequency.setValueAtTime(frequency, time);
+  gain.gain.setValueAtTime(gainValue, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+  oscillator.connect(gain).connect(destination);
+  oscillator.start(time);
+  oscillator.stop(time + duration);
+}
+
+function scheduleNoise(context, destination, time, duration, gainValue) {
+  const bufferSize = Math.max(1, Math.floor(context.sampleRate * duration));
+  const buffer = context.createBuffer(1, bufferSize, context.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i += 1) {
+    data[i] = Math.random() * 2 - 1;
+  }
+  const source = context.createBufferSource();
+  const gain = context.createGain();
+  source.buffer = buffer;
+  gain.gain.setValueAtTime(gainValue, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+  source.connect(gain).connect(destination);
+  source.start(time);
+}
+
+function drawRenderLoop(ctx, canvas, source, start, duration) {
+  return new Promise((resolve) => {
+    const draw = (now) => {
+      const elapsed = (now - start) / 1000;
+      drawRenderFrame(ctx, canvas, source, elapsed, duration);
+      if (elapsed >= duration) {
+        resolve();
+        return;
+      }
+      requestAnimationFrame(draw);
+    };
+    requestAnimationFrame(draw);
+  });
+}
+
+function drawRenderFrame(ctx, canvas, source, elapsed, duration) {
+  const width = canvas.width;
+  const height = canvas.height;
+  drawRenderBackground(ctx, width, height, elapsed);
+
+  if (source.type === "video" || source.type === "image") {
+    drawCover(ctx, source.element, width, height);
+    ctx.fillStyle = "rgba(12, 16, 18, 0.34)";
+    ctx.fillRect(0, 0, width, height);
+  }
+
+  const safe = Math.max(32, Math.round(width * 0.055));
+  ctx.fillStyle = "rgba(247, 247, 242, 0.94)";
+  ctx.fillRect(safe, Math.round(height * 0.64), width - safe * 2, Math.round(height * 0.12));
+  ctx.fillStyle = "#111416";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = `900 ${Math.max(30, Math.round(width * 0.052))}px Arial`;
+  wrapCanvasText(ctx, state.hooks[state.activeHook] || state.captions[0]?.text || "VibeCut render", width / 2, height * 0.7, width - safe * 3, Math.round(width * 0.058));
+
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#f7f7f2";
+  ctx.font = `900 ${Math.max(42, Math.round(width * 0.08))}px Arial`;
+  wrapCanvasText(ctx, state.previewTitle || state.projectTitle, safe, safe + 20, width - safe * 2, Math.round(width * 0.075));
+
+  ctx.font = `700 ${Math.max(18, Math.round(width * 0.025))}px Arial`;
+  ctx.fillStyle = "#5ce0d7";
+  ctx.fillText(`${state.bpm} BPM  /  ${state.key}`, safe, height - safe);
+
+  const barWidth = (width - safe * 2) * Math.min(1, elapsed / duration);
+  ctx.fillStyle = "#0fb9b1";
+  ctx.fillRect(safe, height - safe / 2, barWidth, 8);
+}
+
+function drawRenderBackground(ctx, width, height, elapsed) {
+  const gradient = ctx.createLinearGradient(0, 0, width, height);
+  gradient.addColorStop(0, "#0f3838");
+  gradient.addColorStop(0.45, "#111416");
+  gradient.addColorStop(1, "#35182a");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "rgba(92, 224, 215, 0.16)";
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 16; i += 1) {
+    const x = ((i / 16) * width + elapsed * 18) % width;
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+}
+
+function drawCover(ctx, media, width, height) {
+  const mediaWidth = media.videoWidth || media.naturalWidth || width;
+  const mediaHeight = media.videoHeight || media.naturalHeight || height;
+  const scale = Math.max(width / mediaWidth, height / mediaHeight);
+  const drawWidth = mediaWidth * scale;
+  const drawHeight = mediaHeight * scale;
+  const x = (width - drawWidth) / 2;
+  const y = (height - drawHeight) / 2;
+  ctx.drawImage(media, x, y, drawWidth, drawHeight);
+}
+
+function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = String(text).split(/\s+/);
+  const lines = [];
+  let line = "";
+  words.forEach((word) => {
+    const test = line ? `${line} ${word}` : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  const offset = ((lines.length - 1) * lineHeight) / 2;
+  lines.slice(0, 4).forEach((item, index) => {
+    ctx.fillText(item, x, y - offset + index * lineHeight);
+  });
 }
 
 function downloadProject() {
-  const payload = {
-    app: "VibeCut Studio",
-    exportedAt: new Date().toISOString(),
-    brief: els.briefInput.value,
-    vibe: els.vibeSelect.value,
-    bpm: state.bpm,
-    key: state.key,
-    assets: state.assets.map(({ name, type, size }) => ({ name, type, size })),
-    hooks: state.hooks,
-    clips: state.clips,
-    captions: state.captions,
-    approvals: state.approvals,
-    exports: state.exports
-  };
+  syncStateFromControls();
+  const payload = createPersistableState();
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "vibecut-project.json";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
+  downloadBlob(blob, "vibecut-project.json");
   showToast("Project JSON exported");
 }
 
@@ -1079,6 +1732,7 @@ function startAutosaveClock() {
 function touchSave() {
   state.savedAt = 0;
   els.saveState.textContent = "Autosaved 0:00";
+  saveProject(false);
 }
 
 function showToast(message) {
@@ -1107,12 +1761,12 @@ function extractNouns(text) {
 }
 
 function shuffleArray(items) {
-  const clone = [...items];
-  for (let i = clone.length - 1; i > 0; i -= 1) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
-    [clone[i], clone[j]] = [clone[j], clone[i]];
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return clone;
+  return copy;
 }
 
 function capitalize(value) {
@@ -1131,4 +1785,30 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value).replaceAll("\n", " ");
+}
+
+function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    || "vibecut-render";
+}
+
+function clone(value) {
+  if (typeof structuredClone === "function") {
+    return structuredClone(value);
+  }
+  return JSON.parse(JSON.stringify(value));
 }
