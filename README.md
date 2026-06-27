@@ -45,7 +45,7 @@ This repo is intentionally static and dependency-free. GitHub Pages can serve it
 ![VibeCut Studio app screenshot](docs/vibecut-studio.png)
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Product%20Positioning&fontSize=22&fontColor=e6edf3" width="720" alt="Product Positioning" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Product%20Positioning&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Product Positioning" /></p>
 
 
 Creators and companies are being pushed to publish more short-form video, more podcast clips, more paid ads, more launch assets, and more platform-specific versions of the same message. The hard part is not only cutting clips. The hard part is getting from raw material to a polished, brand-safe, platform-ready content pack.
@@ -57,7 +57,7 @@ It answers one high-value user need:
 > "Give me the full launch pack: video, captions, music, cleaned voice, approval checks, and exports."
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Skill%20Map&fontSize=22&fontColor=e6edf3" width="720" alt="Skill Map" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Skill%20Map&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Skill Map" /></p>
 
 
 The original skill file references experience with video editors and audio tools:
@@ -77,7 +77,7 @@ VibeCut Studio combines those skills into one new product:
 | Ardour-style audio production | Mixer, meters, voice cleanup, mastering to -14 LUFS | Makes voice and final audio sound publishable |
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=What%20Is%20Built&fontSize=22&fontColor=e6edf3" width="720" alt="What Is Built" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=What%20Is%20Built&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="What Is Built" /></p>
 
 
 This is not a landing page. The first screen is the working studio.
@@ -111,7 +111,7 @@ Current app surfaces:
 - Autosave status, visual meters, keyboard focus states, and responsive layout
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=How%20To%20Run%20Locally&fontSize=22&fontColor=e6edf3" width="720" alt="How To Run Locally" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=How%20To%20Run%20Locally&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="How To Run Locally" /></p>
 
 
 The simplest path is to open `index.html` in a browser.
@@ -141,7 +141,7 @@ There is also a Windows launcher:
 ```
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=GitHub%20Pages&fontSize=22&fontColor=e6edf3" width="720" alt="GitHub Pages" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=GitHub%20Pages&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="GitHub Pages" /></p>
 
 
 This repo is already arranged for GitHub Pages.
@@ -160,7 +160,7 @@ Because `index.html` is in the repository root, the public Pages URL will open t
 The `.nojekyll` file is included so GitHub Pages serves the static files as-is.
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Repository%20Standards&fontSize=22&fontColor=e6edf3" width="720" alt="Repository Standards" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Repository%20Standards&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Repository Standards" /></p>
 
 
 This repo should be treated like public developer work.
@@ -195,7 +195,7 @@ Fix caption preview state
 ```
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Public%20Launch%20Notes&fontSize=22&fontColor=e6edf3" width="720" alt="Public Launch Notes" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Public%20Launch%20Notes&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Public Launch Notes" /></p>
 
 
 If this repo is made public, the README should communicate three things quickly:
@@ -207,7 +207,7 @@ If this repo is made public, the README should communicate three things quickly:
 That is why this README describes the product, the skill mapping, the business use case, and the deployment path instead of only listing files.
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Monetization%20Ideas&fontSize=22&fontColor=e6edf3" width="720" alt="Monetization Ideas" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Monetization%20Ideas&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Monetization Ideas" /></p>
 
 
 Possible business directions:
@@ -219,7 +219,7 @@ Possible business directions:
 - Enterprise media governance: audit trail, compliance checks, source licensing
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=File%20Structure&fontSize=22&fontColor=e6edf3" width="720" alt="File Structure" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=File%20Structure&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="File Structure" /></p>
 
 
 ```text
@@ -237,7 +237,7 @@ Possible business directions:
 ```
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Technical%20Notes&fontSize=22&fontColor=e6edf3" width="720" alt="Technical Notes" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Technical%20Notes&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Technical Notes" /></p>
 
 
 The app uses:
@@ -259,7 +259,7 @@ The app uses:
 This makes the project simple to publish, inspect, and run without setup friction.
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Current%20Limitations&fontSize=22&fontColor=e6edf3" width="720" alt="Current Limitations" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Current%20Limitations&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Current Limitations" /></p>
 
 
 The app is currently a front-end production tool with real local preview, real UI state, browser-local project storage, real Web Audio beat playback, real project JSON export, and real local WebM rendering through `MediaRecorder`.
@@ -269,7 +269,7 @@ It does not yet perform server-side rendering, codec-level transcoding beyond br
 Those are the natural backend additions for a hosted commercial version.
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Suggested%20Next%20Issues&fontSize=22&fontColor=e6edf3" width="720" alt="Suggested Next Issues" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Suggested%20Next%20Issues&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Suggested Next Issues" /></p>
 
 
 - Add persistent project save/load from local storage
@@ -283,7 +283,7 @@ Those are the natural backend additions for a hosted commercial version.
 - Add product screenshots or workflow GIFs to this README
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=Accessibility%20And%20UX%20Notes&fontSize=22&fontColor=e6edf3" width="720" alt="Accessibility And UX Notes" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=Accessibility%20And%20UX%20Notes&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="Accessibility And UX Notes" /></p>
 
 
 The app includes:
@@ -295,7 +295,7 @@ The app includes:
 - High-contrast controls over dark production surfaces
 
 <p align="center"><img src="docs/readme-divider.svg" width="720" alt="" /></p>
-<p align="center"><img src="https://capsule-render.vercel.app/api?type=rect&color=070b14&height=50&section=header&text=License&fontSize=22&fontColor=e6edf3" width="720" alt="License" /></p>
+<p align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:070b14,100:12102a&height=50&section=header&text=License&fontSize=22&fontColor=e6edf3&animation=twinkling" width="720" alt="License" /></p>
 
 
 This repository is public for portfolio, product-discovery, and evaluation purposes.
